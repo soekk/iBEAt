@@ -15,11 +15,6 @@ TO RUN THE SCRIPT YOU USE: python main_cluster.py --num n (WHERE n is an integer
 # .venv/Scripts/activate        # activate virtual environment
 
 import os
-import numpy as np
-
-from tqdm import tqdm
-import multiprocessing
-
 import time
 import datetime
 import dbdicom as db
@@ -65,6 +60,8 @@ if __name__ == '__main__':
     #ExperimentName = xnat.main(username, password, path, dataset)
     ExperimentName = "iBE-1128-019"
     pathScan = path + "//" + ExperimentName
+
+    #DICOM2CSV.main(pathScan) #ignore this
     
     folder = db.database(path=pathScan)
 
@@ -85,7 +82,7 @@ if __name__ == '__main__':
     file.close()
     try:
         
-        #rename.main(folder)
+        rename.main(folder)
         
         file = open(filename_log, 'a')
         file.write("\n"+str(datetime.datetime.now())[0:19] + ": Renaming was completed --- %s seconds ---" % (int(time.time() - start_time)))
@@ -127,11 +124,9 @@ if __name__ == '__main__':
         file.write("\n"+str(datetime.datetime.now())[0:19] + ": Modelling was NOT completed; error: "+str(e))
         file.close()
 
-    #upload_folder.main(pathScan)
-    #gdrive_backup_creator = GoogleDriveUp.GoogleDriveBackupCreator()
-    #gdrive_backup_creator.backup(pathScan)
-    #upload_folder.main(pathScan)
+    #upload.main(pathScan,filename_log)
 
+    #IGNORE WHAT IS BELOW
     # start_time = time.time()
     # file = open(filename_log, 'a')
     # file.write("\n"+str(datetime.datetime.now())[0:19] + ": T1 & T2 forward modelling has started!")
