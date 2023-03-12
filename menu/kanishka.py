@@ -1,32 +1,21 @@
 import wezel
 from dbdicom.wrappers import elastix
 from wrappers import mdreg
-import dbdicom as db
 
-
-# def iBEAT_dev(parent): 
-
-#     wezel.menu.folder.all(parent.menu('File'))
-#     wezel.menu.edit.all(parent.menu('Edit'))
-#     wezel.menu.view.all(parent.menu('View'))
-#     wezel.menu.filter.all(parent.menu('Filter'))
-#     wezel.menu.segment.all(parent.menu('Segment'))
-#     wezel.menu.transform.all(parent.menu('Transform'))
-#     coreg_menu(parent.menu('iBEAt-dev'))
-
-#     wezel.menu.about.all(parent.menu('About'))
 
 def coreg_menu(parent): 
 
-    parent.action(CoregisterToElastix, text="Coregister to (elastix)")
     parent.action(DTIModelFit, text="DTI model fit")
-    parent.action(DTIMDReg, text="DTI MDReg")
     parent.action(T1ModelFit, text="T1 model fit")
     parent.action(T2ModelFit, text="T2 model fit")
-    parent.action(T2starModelFit, text="T2star model fit")
+    parent.action(T2starModelFit, text="T2* model fit")
     parent.action(IVIMModelFit, text="IVIM model fit")
     parent.action(MTModelFit, text="MT model fit") # TBC multi-series selection
     parent.action(DCEModelFit, text="DCE model fit")
+    parent.separator()
+    parent.action(CoregisterToElastix, text="Coregister to (elastix)")
+    parent.action(DTIMDReg, text="Model-driven registration (DTI)")
+
     
 class CoregisterToElastix(wezel.gui.Action): 
 
@@ -60,6 +49,7 @@ class CoregisterToElastix(wezel.gui.Action):
             app.display(coregistered)
         app.refresh()
 
+
 class DTIModelFit(wezel.gui.Action): 
 
     def enable(self, app):
@@ -73,6 +63,7 @@ class DTIModelFit(wezel.gui.Action):
             for p in par:
                 app.display(p)
         app.refresh()
+
 
 class T1ModelFit(wezel.gui.Action): 
 
@@ -88,6 +79,7 @@ class T1ModelFit(wezel.gui.Action):
                 app.display(p)
         app.refresh()
 
+
 class T2ModelFit(wezel.gui.Action): 
 
     def enable(self, app):
@@ -101,6 +93,7 @@ class T2ModelFit(wezel.gui.Action):
             for p in par:
                 app.display(p)
         app.refresh()
+
 
 class T2starModelFit(wezel.gui.Action): 
 
@@ -116,6 +109,7 @@ class T2starModelFit(wezel.gui.Action):
                 app.display(p)
         app.refresh()
 
+
 class IVIMModelFit(wezel.gui.Action): 
 
     def enable(self, app):
@@ -129,6 +123,7 @@ class IVIMModelFit(wezel.gui.Action):
             for p in par:
                 app.display(p)
         app.refresh()
+
 
 class DTIMDReg(wezel.gui.Action): 
 
@@ -144,6 +139,7 @@ class DTIMDReg(wezel.gui.Action):
             for p in par:
                 app.display(p)
         app.refresh()
+
 
 class MTModelFit(wezel.gui.Action): #TBC MULTI-SERIES SELECTION
 

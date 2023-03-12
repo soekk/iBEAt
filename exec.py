@@ -22,8 +22,9 @@
 
 
 import wezel
-#from menu.kanishka import coreg_menu
-from menu.steven import segment_menu
+from menu.kanishka import coreg_menu
+from menu.steven import segment_menu, about_menu
+
 
 
 def iBEAT_dev(parent): 
@@ -35,14 +36,14 @@ def iBEAT_dev(parent):
     wezel.menu.segment.all(parent.menu('Segment'))
     wezel.menu.transform.all(parent.menu('Transform'))
     wezel.menu.measure.all(parent.menu('Measure'))
-    #coreg_menu(parent.menu('iBEAt-reg'))
     segment_menu(parent.menu('iBEAt-seg'))
-    wezel.menu.about.all(parent.menu('About'))
+    coreg_menu(parent.menu('iBEAt-reg'))
+    about_menu(parent.menu('About'))
 
 
 if __name__ == "__main__":
 
     # Main program
-    wzl = wezel.app()
+    wzl = wezel.app(project='iBEAt')
     wzl.set_menu(iBEAT_dev)
     wzl.show()
