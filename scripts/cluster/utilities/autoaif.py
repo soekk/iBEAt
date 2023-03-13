@@ -1,10 +1,6 @@
-import os
 import numpy as np
-
-import actions.reggrow as reg
+import utilities.reggrow as reg
 import cv2
-import matplotlib.pyplot as plt
-
     
 def DCEautoAIF(array, header, series,targetslice, cutRatio, filter_kernel, regGrow_threshold ):
 

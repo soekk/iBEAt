@@ -20,12 +20,12 @@ import datetime
 import dbdicom as db
 import argparse
 
-import XNAT_cluster as xnat
-import RENAME_cluster as rename
-import MDR_cluster as mdr
-import MODELLING_cluster as modelling
-import T1T2_fw_modelling_cluster as T1T2_modelling
-import UPLOAD_cluster as upload
+import cluster_xnat as xnat
+import cluster_rename as rename
+import cluster_mdr as mdr
+import cluster_modelling as modelling
+import cluster_t1t2_fw_modelling as T1T2_modelling
+import cluster_upload as upload
 
 if __name__ == '__main__':
 

@@ -16,7 +16,7 @@ import mdreg.models.T1_parallel
 import mdreg.models.DWI_monoexponential_parallel
 import mdreg.models.DTI
 import mdreg.models.DCE_2CFM
-import actions.autoaif
+import utilities.autoaif
 import dbdicom as db
 import os
 import gc
@@ -251,7 +251,7 @@ def _mdr(series, number_slices, array, header, signal_model, elastix_file, signa
                         else:
                             aortaslice = 1
 
-                        aif = actions.autoaif.DCEautoAIF(array, header, series, aortaslice, cutRatio, filter_kernel, regGrow_threshold)
+                        aif = utilities.autoaif.DCEautoAIF(array, header, series, aortaslice, cutRatio, filter_kernel, regGrow_threshold)
 
                         time = np.zeros(header.shape[1])
                         for i in range(header.shape[1]):
