@@ -33,7 +33,7 @@ if __name__ == '__main__':
     username = "**********"
     password = "**********"
     #path = "//mnt//fastdata//" + username #CLUSTER PATH TO SAVE DATA, ADD YOUR LOCAL PATH IF YOU WANT TO RUN IT LOCALLY
-    path = "C://Users//md1jdsp//Desktop//PHILIPS_BARI"
+    path = "C://Users//md1jdsp//Desktop//CLUSTER//CHRISTMAS ANALYSIS"
     #################################################
 
     # parser = argparse.ArgumentParser()
@@ -58,10 +58,8 @@ if __name__ == '__main__':
     #########################################################################################################################################
 
     #ExperimentName = xnat.main(username, password, path, dataset)
-    ExperimentName = "iBE-1128-019"
+    ExperimentName = "iBE-1128-010"
     pathScan = path + "//" + ExperimentName
-
-    #DICOM2CSV.main(pathScan) #ignore this
     
     folder = db.database(path=pathScan)
 
@@ -124,7 +122,7 @@ if __name__ == '__main__':
         file.write("\n"+str(datetime.datetime.now())[0:19] + ": Modelling was NOT completed; error: "+str(e))
         file.close()
 
-    #upload.main(pathScan,filename_log)
+    upload.main(pathScan,filename_log)
 
     #IGNORE WHAT IS BELOW
     # start_time = time.time()

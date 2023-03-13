@@ -9,8 +9,8 @@ Find iBEAt motion corrected pulse sequence name (MDR output: *_mdr_moco) and exe
 import datetime
 import time
 import numpy as np
-import models.T2s_pixelwise_fit
-import models.IVIM_pixelwise_fit
+import models.t2s_pixelwise_fit
+import models.ivim_pixelwise_fit
 import tqdm
 from dipy.core.gradients import gradient_table
 import dipy.reconst.dti as dti
@@ -110,12 +110,12 @@ def T1T2_Modelling(series=None, mask=None,export_ROI=False, study=None):
 
                     try:
 
-                        fit_T1, fitted_parameters_T1 = models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T1_FM.main (Kidney_pixel_T1, TI_temp, [FA_rad, TR, N_T1,FA_Cat])
+                        fit_T1, fitted_parameters_T1 = models.model_library.single_pixel_forward_models.t1_fm.main (Kidney_pixel_T1, TI_temp, [FA_rad, TR, N_T1,FA_Cat])
                                                                                                                 
 
                         S0_T1,T1,FA_eff = fitted_parameters_T1
 
-                        fit_T2, fitted_parameters_T2 = models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T2_FM.main (Kidney_pixel_T2, TE,[T1,Tspoil,FA_rad,TR, N_T2,Trec,FA_eff])
+                        fit_T2, fitted_parameters_T2 = models.model_library.single_pixel_forward_models.t2_fm.main (Kidney_pixel_T2, TE,[T1,Tspoil,FA_rad,TR, N_T2,Trec,FA_eff])
 
                         S0_T2, T2, FA_eff_2 =  fitted_parameters_T2
 

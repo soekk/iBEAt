@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from tqdm import tqdm
 
-from iBEAt_Model_Library.single_pixel_forward_models import iBEAT_T1_FM, iBEAT_T2_FM 
+from model_library.single_pixel_forward_models import t1_fm, t2_fm 
 
 global x1
 global x2
@@ -36,7 +36,7 @@ def mod1(TI,Eff,M_eq, T1,FA_Eff,T2): # not all parameters are used here
     FA      = 12/360*(2*np.pi)# Flip angle in degrees (hardcoded from Siemens protocol) converted to radians
 
     #T1 Forward Model    
-    M_result = iBEAT_T1_FM.signalSequenceT1_FLASH(M_eq, T1, TI, FA,FA_Eff, TR, N_T1, Eff, FA_Cat)
+    M_result = t1_fm.signalSequenceT1_FLASH(M_eq, T1, TI, FA,FA_Eff, TR, N_T1, Eff, FA_Cat)
         
     return M_result
 
@@ -60,7 +60,7 @@ def mod2(Tprep,Eff, M_eq, T1,FA_Eff,T2): # not all parameters are used here
     FA     = 12/360*(2*np.pi) # Flip angle in degrees (hardcoded from Siemens protocol) converted to radians
 
     #T2 Forward Model 
-    M_result = iBEAT_T2_FM.signalSequenceT2prep(Tprep, M_eq, T2, T1 , Tspoil, FA,FA_Eff, TR, N_T2, Trec)
+    M_result = t2_fm.signalSequenceT2prep(Tprep, M_eq, T2, T1 , Tspoil, FA,FA_Eff, TR, N_T2, Trec)
         
     return M_result
 

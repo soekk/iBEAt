@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import time
 
-from iBEAt_Model_Library.single_pixel_forward_models import iBEAT_T2s_FM
+from model_library.single_pixel_forward_models import t2s_fm
 
 #from iBEAt_Model_Library.single_pixel_forward_models import iBEAT_T2s_FM
 
@@ -62,7 +62,7 @@ def main(T2s_images_to_be_fitted, sequenceParam,GUI_object=None):
                 if Kidney_pixel_T2s[0] == 0:
                     continue
 
-                [Fit,Fitted_Parameters] = iBEAT_T2s_FM.main(Kidney_pixel_T2s, TE_list)
+                [Fit,Fitted_Parameters] = t2s_fm.main(Kidney_pixel_T2s, TE_list)
 
                 residuals = Kidney_pixel_T2s - Fit
                 ss_res = np.sum(residuals**2)

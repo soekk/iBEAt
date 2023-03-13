@@ -6,7 +6,7 @@ from numpy.core.numeric import NaN
 from tqdm import tqdm
 import time
 import matplotlib.pyplot as plt
-from iBEAt_Model_Library.single_pixel_forward_models import iBEAT_IVIM_FM
+from model_library.single_pixel_forward_models import ivim_fm
 
 
 def main(IVIM_images_to_be_fitted, sequenceParam,GUI_object=None):

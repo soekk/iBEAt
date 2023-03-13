@@ -6,19 +6,20 @@ Apply forward modelling to T1 and T2 data
 """
 
 import numpy as np
-import models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T1_FM
-import models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T2_FM
+import models.model_library.single_pixel_forward_models.t1_fm
+import models.model_library.single_pixel_forward_models.t2_fm
+
 
 def main(arguments):
 
     try:
         x,y,t1_value,t2_value,TI_temp,TE,FA_rad,TR,N_T1,N_T2,FA_Cat,Trec,FA_eff,Tspoil = arguments
 
-        fit_T1, fitted_parameters_T1 = models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T1_FM.main (t1_value, TI_temp, [FA_rad, TR, N_T1,FA_Cat])
+        fit_T1, fitted_parameters_T1 = models.model_library.single_pixel_forward_models.iBEAT_T1_FM.main (t1_value, TI_temp, [FA_rad, TR, N_T1,FA_Cat])
                                                                                                             
         S0_T1,T1,FA_eff = fitted_parameters_T1
 
-        fit_T2, fitted_parameters_T2 = models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T2_FM.main (t2_value, TE,[T1,Tspoil,FA_rad,TR, N_T2,Trec,FA_eff])
+        fit_T2, fitted_parameters_T2 = models.iBEAt_model_library.single_pixel_forward_models.iBEAT_T2_FM.main (t2_value, TE,[T1,Tspoil,FA_rad,TR, N_T2,Trec,FA_eff])
 
         S0_T2, T2, FA_eff_2 =  fitted_parameters_T2
         
