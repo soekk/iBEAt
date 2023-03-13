@@ -1,11 +1,8 @@
 import datetime
 import time
-import dbdicom as db
 import os
 import numpy as np
-import models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T1_FM
-import models.iBEAt_Model_Library.single_pixel_forward_models.iBEAT_T2_FM
-import parallel_curve_fit_T1_T2_alone_cluster as parallel_curve_fit_T1_T2
+import cluster_parallel_curve_fit_t1_t2_alone as parallel_curve_fit_T1_T2
 from tqdm import tqdm
 import multiprocessing
 

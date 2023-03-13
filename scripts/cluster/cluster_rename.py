@@ -5,9 +5,8 @@ iBEAt Rename Scrpit
 Pulse sequence name standardization for iBEAt MR Protcol
 """
 
-import dbdicom as db
+
 from itertools import chain
-import numpy as np
 
 def Philips_rename(series, folder):
         

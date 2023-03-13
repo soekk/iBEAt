@@ -2,11 +2,9 @@ import os
 import os.path
 import time
 import datetime
-import zipfile
 
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-from os import chdir, listdir, stat
 
 def zipdir(path, ziph):
     # ziph is zipfile handle

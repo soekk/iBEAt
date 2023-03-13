@@ -8,15 +8,13 @@ Find iBEAt motion corrected pulse sequence name (MDR output: *_mdr_moco) and exe
 
 import datetime
 import time
-import dbdicom as db
 import numpy as np
 import models.T2s_pixelwise_fit
 import models.IVIM_pixelwise_fit
 import tqdm
 from dipy.core.gradients import gradient_table
 import dipy.reconst.dti as dti
-from dipy.reconst.dti import fractional_anisotropy, color_fa
-import runpy
+from dipy.reconst.dti import fractional_anisotropy
 from scipy.integrate import trapz
 
 

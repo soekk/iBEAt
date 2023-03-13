@@ -4,7 +4,6 @@ iBEAt MDR Scrpit
 2022
 Find iBEAt standard pulse sequence name  and execute MDR for: DCE, DTI, T1, T2, T2*, MT
 """
-import psutil
 import mdreg
 import os
 import datetime
@@ -17,12 +16,7 @@ import mdreg.models.DWI_monoexponential_parallel
 import mdreg.models.DTI
 import mdreg.models.DCE_2CFM
 import utilities.autoaif
-import dbdicom as db
 import os
-import gc
-import matplotlib.pyplot as plt
-from skimage.transform import rescale
-import nibabel as nib # unnecessary - remove
 import scipy
 
 elastix_pars = os.path.join(os.path.join(os.path.dirname(__file__)).split("actions")[0], 'elastix')
