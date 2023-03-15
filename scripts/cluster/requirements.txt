@@ -1,7 +1,7 @@
 datetime
-dbdicom
+dbdicom         #editable install
 argparse
-mdreg
+mdreg           #editable install
 numpy
 matplotlib
 scipy
