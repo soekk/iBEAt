@@ -2,7 +2,7 @@ import numpy as np
 import mdreg
 from mdreg.models import DTI, T1_simple, T2_simple, T2star_simple, DWI_simple, constant, DCE_2CFM
 #import actions.autoaif
-from Scripts.iBEAt_cluster.actions import autoaif
+from scripts.cluster.utilities import autoaif
 
 def fit_DTI(series):
 
