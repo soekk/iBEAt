@@ -1,5 +1,5 @@
 import numpy as np
-import scripts.cluster.utilities.reggrow as reg
+import utilities.reggrow as reg
 import cv2
     
 def DCEautoAIF(array, header, series,targetslice, cutRatio, filter_kernel, regGrow_threshold ):
