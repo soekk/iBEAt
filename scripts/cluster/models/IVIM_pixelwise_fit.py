@@ -1,11 +1,5 @@
-import os, sys
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-sys.path.append(os.path.abspath(os.path.join('..', 'GitHub')))
 import numpy as np
-from numpy.core.numeric import NaN
 from tqdm import tqdm
-import time
-import matplotlib.pyplot as plt
 from model_library.single_pixel_forward_models import ivim_fm
 
 
@@ -78,7 +72,7 @@ def main(IVIM_images_to_be_fitted, sequenceParam,GUI_object=None):
                 #print(Kidney_pixel_IVIM)
                 Kidney_pixel_IVIM = Kidney_pixel_IVIM/Kidney_pixel_IVIM[0]
 
-                [Fit,Fitted_Parameters] = iBEAT_IVIM_FM.main(Kidney_pixel_IVIM, bvals_unique)
+                [Fit,Fitted_Parameters] = ivim_fm.main(Kidney_pixel_IVIM, bvals_unique)
 
                 residuals =  Kidney_pixel_IVIM - Fit
                 ss_res = np.sum(residuals**2)

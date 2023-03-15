@@ -4,11 +4,8 @@ iBEAt study T1 & T2 joint model-fit
 Siemens 3T PRISMA - Leeds (T1 & T2 sequence)
 2021
 """
-import os, sys
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-sys.path.append(os.path.abspath(os.path.join('..', 'GitHub')))
+
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from tqdm import tqdm
 

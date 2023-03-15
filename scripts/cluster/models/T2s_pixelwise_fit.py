@@ -4,19 +4,10 @@ iBEAt study T2* model-fit
 Siemens 3T PRISMA - Leeds (T2* sequence)
 2021
 """
-import os, sys
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-sys.path.append(os.path.abspath(os.path.join('..', 'GitHub')))
 
 import numpy as np
-from numpy.core.numeric import NaN
-import matplotlib.pyplot as plt
 from tqdm import tqdm
-import time
-
 from model_library.single_pixel_forward_models import t2s_fm
-
-#from iBEAt_Model_Library.single_pixel_forward_models import iBEAT_T2s_FM
 
 def main(T2s_images_to_be_fitted, sequenceParam,GUI_object=None):
     """ main function that performs the T2* model-fit with shared parameters at single pixel level. 
