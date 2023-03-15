@@ -1,5 +1,3 @@
-os
-time
 datetime
 dbdicom
 argparse
@@ -10,8 +8,6 @@ scipy
 scikit-image
 tqdm
 dipy
-itertools
 pydrive
-zipfile
 xnat
 opencv-python
