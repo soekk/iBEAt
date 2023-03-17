@@ -10,8 +10,8 @@ def _about_beat_dkd(app):
     webbrowser.open("https://www.beat-dkd.eu/")
 
 
-about_ibeat = Action('iBEAt', on_clicked=_about_ibeat)
-about_beat_dkd = Action('BEAt-DKD', on_clicked=_about_beat_dkd)
+ibeat = Action('iBEAt', on_clicked=_about_ibeat)
+beat_dkd = Action('BEAt-DKD', on_clicked=_about_beat_dkd)
 
 
 

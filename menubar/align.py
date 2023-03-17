@@ -1,6 +1,6 @@
 from dbdicom.wrappers import elastix
 from wezel.gui import Menu
-from iBEAt.wrappers import mdreg
+from wrappers import mdreg
 
 
 def _if_a_series_is_selected(app):
@@ -144,4 +144,4 @@ menu.add_action('MT model fit', on_clicked=_mt_model_fit, is_clickable=_if_a_ser
 menu.add_action('DCE model fit', on_clicked=_dce_model_fit, is_clickable=_if_a_series_is_selected)
 menu.add_separator()
 menu.add_action('Coregister to (elastix)', on_clicked=_coregister, is_clickable=_if_a_series_is_selected)
-menu.add_action('Model-driven registration (DTI)', on_clicked=_dti_mdreg, is_clicked=_if_a_series_is_selected)
+menu.add_action('Model-driven registration (DTI)', on_clicked=_dti_mdreg, is_clickable=_if_a_series_is_selected)

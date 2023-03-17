@@ -1,8 +1,8 @@
 # To set up a virtual environment
 # -------------------------------
 # Create virtual environment and activate it
-# py -3 -m venv .venv           
-# .venv/Scripts/activate 
+# py -3 -m venv .venv_ibeat           
+# .venv_ibeat/Scripts/activate 
 
 # Install editable versions of requirements under development
 # pip install -e C:\Users\steve\Dropbox\Software\QIB-Sheffield\dbdicom
@@ -33,14 +33,17 @@ import menubar
 
 
 def build_iBEAt_menu(wzl):
-    wzl.add_action(pyvista.action_show_mask_surface, menu='View', position=5)
     wzl.add_menu(scipy.menu_filter)
     wzl.add_menu(segment.menu)
     wzl.add_menu(transform.menu)
     wzl.add_menu(measure.menu)
     wzl.add_menu(menubar.segment.menu)
     wzl.add_menu(menubar.align.menu)
-    wzl.add_menu(menubar.about.menu)
+    wzl.add_menu(wezel.menubar.about.menu)
+    wzl.add_action(pyvista.action_show_mask_surface, menu='View', position=5)
+    wzl.add_action(menubar.about.ibeat, menu='About')
+    wzl.add_action(menubar.about.beat_dkd, menu='About')
+    
 
 
 if __name__ == "__main__":
