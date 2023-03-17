@@ -1,6 +1,10 @@
 # To set up a virtual environment
 # -------------------------------
 # Create virtual environment and activate it
+# For Mac OSX
+# python3 -m venv .venv_ibeat           
+# source .venv_ibeat/bin/activate
+# Windows
 # py -3 -m venv .venv_ibeat           
 # .venv_ibeat/Scripts/activate 
 
