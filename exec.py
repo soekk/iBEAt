@@ -1,8 +1,12 @@
 # To set up a virtual environment
 # -------------------------------
 # Create virtual environment and activate it
-# py -3 -m venv .venv           
-# .venv/Scripts/activate 
+# For Mac OSX
+# python3 -m venv .venv_ibeat           
+# source .venv_ibeat/bin/activate
+# Windows
+# py -3 -m venv .venv_ibeat           
+# .venv_ibeat/Scripts/activate 
 
 # Install editable versions of requirements under development
 # pip install -e C:\Users\steve\Dropbox\Software\QIB-Sheffield\dbdicom
@@ -22,28 +26,32 @@
 
 
 import wezel
-from menu.kanishka import coreg_menu
-from menu.steven import segment_menu, about_menu
+from wezel.plugins import (
+    pyvista,
+    scipy,
+    measure,
+    transform,
+    segment,
+)
+import menubar
 
 
-
-def iBEAT_dev(parent): 
-
-    wezel.menu.folder.all(parent.menu('File'))
-    wezel.menu.edit.all(parent.menu('Edit'))
-    wezel.menu.view.all(parent.menu('View'))
-    wezel.menu.filter.all(parent.menu('Filter'))
-    wezel.menu.segment.all(parent.menu('Segment'))
-    wezel.menu.transform.all(parent.menu('Transform'))
-    wezel.menu.measure.all(parent.menu('Measure'))
-    segment_menu(parent.menu('iBEAt-seg'))
-    coreg_menu(parent.menu('iBEAt-reg'))
-    about_menu(parent.menu('About'))
+def build_iBEAt_menu(wzl):
+    wzl.add_menu(scipy.menu_filter)
+    wzl.add_menu(segment.menu)
+    wzl.add_menu(transform.menu)
+    wzl.add_menu(measure.menu)
+    wzl.add_menu(menubar.segment.menu)
+    wzl.add_menu(menubar.align.menu)
+    wzl.add_menu(wezel.menubar.about.menu)
+    wzl.add_action(pyvista.action_show_mask_surface, menu='View', position=5)
+    wzl.add_action(menubar.about.ibeat, menu='About')
+    wzl.add_action(menubar.about.beat_dkd, menu='About')
+    
 
 
 if __name__ == "__main__":
 
-    # Main program
     wzl = wezel.app(project='iBEAt')
-    wzl.set_menu(iBEAT_dev)
+    build_iBEAt_menu(wzl)
     wzl.show()
