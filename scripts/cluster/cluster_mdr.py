@@ -17,38 +17,8 @@ import mdreg.models.DTI
 import mdreg.models.DCE_2CFM
 import utilities.autoaif
 import os
-import scipy
 
 elastix_pars = os.path.join(os.path.join(os.path.dirname(__file__)).split("actions")[0], 'elastix')
-
-def zoom(array, header, zoom):
-    """
-    wrapper for scipy.ndimage.zoom.
-
-    Parameters
-    ----------
-    input: dbdicom series
-
-    Returns
-    -------
-    zoomed : dbdicom series
-    """
-    newDimX = int(np.shape(array)[0]*zoom)
-    newDimY = int(np.shape(array)[1]*zoom)
-    resized_array = np.zeros([newDimX, newDimY, array.shape[2], array.shape[3], array.shape[4]])
-    
-    for i in range (array.shape[2]):
-        for j in range (array.shape[3]):
-        
-            pixel_spacing = header[i,j,:]['PixelSpacing']
-            header[i,j,:]['PixelSpacing'] = [p/zoom for p in pixel_spacing]
-
-            temp_array = np.squeeze(array[:,:,i,j,:])
-            temp_array_resized = scipy.ndimage.zoom(temp_array, zoom)
-            resized_array[:,:,i,j,0] = temp_array_resized
-
-    return resized_array, header
-
 
 def MDRegT2star(series=None,study=None):
 
@@ -308,6 +278,7 @@ def main(folder,filename_log):
     study = folder.series()[0].new_pibling(StudyDescription=current_study.StudyDescription + '_MDRresults')
 
     for series in folder.series():
+
         SeqName = series["SeriesDescription"]
 
         if SeqName is not None:
