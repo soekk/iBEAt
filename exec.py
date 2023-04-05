@@ -32,6 +32,7 @@ from wezel.plugins import (
     measure,
     transform,
     segment,
+    align,
 )
 import menubar
 
@@ -39,10 +40,10 @@ import menubar
 def build_iBEAt_menu(wzl):
     wzl.add_menu(scipy.menu_filter)
     wzl.add_menu(segment.menu)
+    wzl.add_menu(align.menu)
     wzl.add_menu(transform.menu)
     wzl.add_menu(measure.menu)
     wzl.add_menu(menubar.segment.menu)
-    wzl.add_menu(menubar.align.menu)
     wzl.add_menu(wezel.menubar.about.menu)
     wzl.add_action(pyvista.action_show_mask_surface, menu='View', position=5)
     wzl.add_action(menubar.about.ibeat, menu='About')

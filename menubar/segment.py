@@ -1,6 +1,7 @@
 from dbdicom.wrappers import sklearn, skimage, scipy, dipy
 from wezel.displays import TableDisplay
 from wezel.gui import Menu, Action
+from wezel.plugins.pyvista import SurfaceDisplay
 
 
 def _if_a_database_is_open(app): 
@@ -78,7 +79,8 @@ def _renal_sinus_fat(app):
         sinus_fat_largest.SeriesDescription = kidney.instance().SeriesDescription + 'SF'
         # Append and display
         sf_series.append(sinus_fat_largest)
-        app.display(sinus_fat_largest, view='Surface')
+        viewer = SurfaceDisplay(sinus_fat_largest)
+        app.addWidget(viewer, title=sinus_fat_largest.label())
         # Remove intermediate results
         if cleanup:
             kidney_hull.remove()
