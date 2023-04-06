@@ -1,11 +1,13 @@
+httplib2==0.15.0
 datetime
-dbdicom         #editable install
+#dbdicom         #editable install
 argparse
-mdreg           #editable install
+#mdreg           #editable install
 numpy
 matplotlib
 scipy
 scikit-image
+scikit-learn
 tqdm
 dipy
 pydrive

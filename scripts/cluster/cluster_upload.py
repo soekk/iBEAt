@@ -2,6 +2,7 @@ import os
 import os.path
 import time
 import datetime
+import zipfile
 
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
@@ -20,36 +21,46 @@ def GoogleDrive_Upload(pathScan,filename_log):
     drive = GoogleDrive (gauth)
 
 
-    upload_file_list = [filename_log,pathScan + '.zip']
+    #upload_file_list = [filename_log,pathScan + '.zip',pathScan + '_segmentation_results' + '.zip']
+    upload_file_list = [filename_log,pathScan + '_segmentation_results' + '.zip']
     #upload_file_list = [filename_log]
 
     for upload_file in upload_file_list:
         #gfile = drive.CreateFile({'title':os.path.basename(upload_file) ,'parents': [{'id': '1NvbNw00NaHpritRiYPKGC1l-4mOonIs4'}]})
-        gfile = drive.CreateFile({'title':os.path.basename(upload_file) ,'parents': [{'id': '0AF9WRJGysgcAUk9PVA'}]})
-        # Read file and set it as the content of this instance.
-        gfile.SetContentFile(upload_file)
-        gfile.Upload(param={'supportsTeamDrives': True}) # Upload the file.
+
+        try:
+            gfile = drive.CreateFile({'title':os.path.basename(upload_file) ,'parents': [{'id': '0AF9WRJGysgcAUk9PVA'}]})
+            # Read file and set it as the content of this instance.
+            gfile.SetContentFile(upload_file)
+            gfile.Upload(param={'supportsTeamDrives': True}) # Upload the file.
+        except:
+            continue
 
 
 def main(pathScan,filename_log):
 
-    # try:
-    #     start_time = time.time()
-    #     file = open(filename_log, 'a')
-    #     file.write("\n"+str(datetime.datetime.now())[0:19] + ": Compressing into a zip file has started")
-    #     file.close()
+    pathSegmentation = pathScan + '_segmentation_results'
 
-    #     with zipfile.ZipFile(pathScan + '.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
-    #         zipdir(pathScan, zipf)
+    try:
+        start_time = time.time()
+        file = open(filename_log, 'a')
+        file.write("\n"+str(datetime.datetime.now())[0:19] + ": Compressing into a zip file has started")
+        file.close()
 
-    #     file = open(filename_log, 'a')
-    #     file.write("\n"+str(datetime.datetime.now())[0:19] + ": Compressing into a zip file was completed --- %s seconds ---" % (int(time.time() - start_time))) 
-    #     file.close()   
+        # with zipfile.ZipFile(pathScan + '.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
+        #     zipdir(pathScan, zipf)
 
-    # except Exception as e: 
-    #     file = open(filename_log, 'a')
-    #     file.write("\n"+str(datetime.datetime.now())[0:19] + ": Compressing into a zip file was NOT completed ; error: "+str(e)) 
-    #     file.close()
+        with zipfile.ZipFile(pathSegmentation + '.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
+            zipdir(pathSegmentation, zipf)
+
+        file = open(filename_log, 'a')
+        file.write("\n"+str(datetime.datetime.now())[0:19] + ": Compressing into a zip file was completed --- %s seconds ---" % (int(time.time() - start_time))) 
+        file.close()   
+
+    except Exception as e: 
+        file = open(filename_log, 'a')
+        file.write("\n"+str(datetime.datetime.now())[0:19] + ": Compressing into a zip file was NOT completed ; error: "+str(e)) 
+        file.close()
 
     try:
         start_time = time.time()
@@ -58,7 +69,6 @@ def main(pathScan,filename_log):
         file.close()
 
         GoogleDrive_Upload(pathScan,filename_log)
-        #upload_files('1NvbNw00NaHpritRiYPKGC1l-4mOonIs4', pathScan)
 
     except Exception as e: 
         file = open(filename_log, 'a')

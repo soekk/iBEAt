@@ -13,7 +13,6 @@ TO RUN THE SCRIPT YOU USE: python main_cluster.py --num n (WHERE n is an integer
 # --------------------------
 # py -3 -m venv .venv           # create virtual environment
 # .venv/Scripts/activate        # activate virtual environment
-
 import os
 import time
 import datetime
@@ -26,6 +25,7 @@ import cluster_mdr as mdr
 import cluster_modelling as modelling
 import cluster_t1t2_fw_modelling as T1T2_modelling
 import cluster_upload as upload
+import cluster_segmentation as segmentation
 
 if __name__ == '__main__':
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     username = "**********"
     password = "**********"
     #path = "//mnt//fastdata//" + username #CLUSTER PATH TO SAVE DATA, ADD YOUR LOCAL PATH IF YOU WANT TO RUN IT LOCALLY
-    path = "C://Users//md1jdsp//Desktop//CLUSTER//CHRISTMAS ANALYSIS"
+    path = "C://Users//md1jdsp//Desktop"
     #################################################
 
     # parser = argparse.ArgumentParser()
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     #########################################################################################################################################
 
     #ExperimentName = xnat.main(username, password, path, dataset)
-    ExperimentName = "iBE-1128-010"
+    ExperimentName = "iBE-2128_008_baseline"
     pathScan = path + "//" + ExperimentName
     
     folder = db.database(path=pathScan)
@@ -120,6 +120,23 @@ if __name__ == '__main__':
     except Exception as e:
         file = open(filename_log, 'a')
         file.write("\n"+str(datetime.datetime.now())[0:19] + ": Modelling was NOT completed; error: "+str(e))
+        file.close()
+
+    start_time = time.time()
+    file = open(filename_log, 'a')
+    file.write("\n"+str(datetime.datetime.now())[0:19] + ": Segmentation has started!")
+    file.close()
+
+    try:
+
+        segmentation.main(folder,pathScan,filename_log)
+
+        file = open(filename_log, 'a')
+        file.write("\n"+str(datetime.datetime.now())[0:19] + ": Segmentation was completed --- %s seconds ---" % (int(time.time() - start_time)))
+        file.close()
+    except Exception as e:
+        file = open(filename_log, 'a')
+        file.write("\n"+str(datetime.datetime.now())[0:19] + ": Segmentation was NOT completed; error: "+str(e))
         file.close()
 
     upload.main(pathScan,filename_log)
