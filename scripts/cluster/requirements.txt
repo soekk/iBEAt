@@ -13,3 +13,4 @@ dipy
 pydrive
 xnat
 opencv-python
+fsspec
